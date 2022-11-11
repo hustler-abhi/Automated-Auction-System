@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.auction.exception.ItemException;
 import com.auction.exception.SellerException;
 import com.auction.model.ItemBean;
 import com.auction.model.SellerBean;
@@ -96,15 +97,71 @@ public class SellerDaoimpl implements SellerDao{
 	}
 
 	@Override
-	public String insertintoProduct(ItemBean p) {
+	public String insertintoProduct(ItemBean s) throws ItemException {
 		// TODO Auto-generated method stub
-		return null;
+String message = "item not added...";
+		
+		
+		try (Connection con=DBUTILL.provideConnection()){
+		PreparedStatement ps=	con.prepareStatement("insert into item(item_id,item_name,price,quantity,category,seller_id) values(?,?,?,?,?,?)");
+		 ps.setInt(1, s.getItem_id());
+		 ps.setString(2, s.getItem_name());
+		 ps.setInt(3,s.getPrice());
+		 ps.setInt(4, s.getQuantity());
+		 ps.setString(5,s.getCategory());
+		 ps.setInt(6, s.getSeller_id());
+		
+			int ans=ps.executeUpdate();
+			
+			if(ans>0) {
+				message=s.getItem_name()+" item added Succesfully ";
+			}else {
+				throw new  ItemException(message);
+			}
+		} catch (SQLException e) {
+			throw new  ItemException(e.getMessage());
+		}
+		
+		
+		return message;
+		
+ 
 	}
 
 	@Override
-	public String removefromProduct(int productid) {
+	public String removefromProduct(int productid) throws ItemException {
 		// TODO Auto-generated method stub
-		return null;
+String message = "item not removed...";
+		
+		
+		try (Connection con=DBUTILL.provideConnection()){
+		PreparedStatement ps=	con.prepareStatement("delete from item where item_id=?");
+		PreparedStatement ps1=	con.prepareStatement("select * from item where item_id=?");
+		
+		 ps.setInt(1, productid);
+		 ps1.setInt(1, productid);
+		  
+			ResultSet rs=	ps1.executeQuery();
+			int ans=ps.executeUpdate();
+	
+		String name="";
+		if(rs.next()) {
+			
+			name=rs.getString("item_name");
+		}
+			
+			if(ans>0) {
+				message= name +" item removed Succesfully ";
+			}else {
+				throw new  ItemException(message);
+			}
+		} catch (SQLException e) {
+			throw new  ItemException(e.getMessage());
+		}
+		
+		
+		return message;
+ 
 	}
 	
 
