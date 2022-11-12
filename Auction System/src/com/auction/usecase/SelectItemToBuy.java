@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.auction.dao.BuyerDao;
 import com.auction.dao.BuyerDaoimpl;
 import com.auction.exception.ItemException;
+import com.auction.model.ItemBean;
 
 public class SelectItemToBuy {
 	
@@ -19,7 +20,11 @@ public class SelectItemToBuy {
 		BuyerDao b=new BuyerDaoimpl();
 		
 		try {
-			System.out.println(b.selectItemtoBuy(item));
+			ItemBean s=b.selectItemtoBuy(item);
+			System.out.println("Item_name is "+s.getItem_name());
+			System.out.println("Item_price is " +s.getPrice());
+			System.out.println("Item_quantity is "+s.getQuantity());
+			System.out.println("Itrm_Ctegory is " +s.getCategory());
 		} catch (ItemException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

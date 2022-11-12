@@ -10,7 +10,7 @@ import com.auction.model.SellerBean;
 public class LoginSeller {
 	
 	
-public static void main(String[] args) {
+public static boolean main(String[] args) {
 	
 	Scanner sc =new Scanner(System.in);
 	
@@ -25,10 +25,19 @@ public static void main(String[] args) {
 	
 	SellerDao dao =new SellerDaoimpl();
 	try {
-		System.out.println(dao. loginSeller(email, pass));
+		String msg=dao. loginSeller(email, pass);
+		 
+		if(msg.equalsIgnoreCase("Welcome")) {
+			return true;
+		}else {
+			return false;
+		}
+		
 	} catch (SellerException e) {
 		e.printStackTrace();
 	}
+	
+	return false;
 	
 }
 }

@@ -59,7 +59,10 @@ String message = "Admin not registered...";
 			ResultSet rs  =ps.executeQuery();
 			
 			if(rs.next()) {
-				message= "Welcome";
+				
+				message= " Welcome " + rs.getString("Admin_name")+" !";
+				System.out.println(message);
+				message="Welcome";
 			}else {
 				throw new AdminException(message);
 			}

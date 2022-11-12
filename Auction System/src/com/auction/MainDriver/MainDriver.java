@@ -1,4 +1,4 @@
-package com.auction.usecase;
+package com.auction.MainDriver;
 
 import java.sql.DriverManager;
 import java.util.Scanner;
@@ -12,6 +12,7 @@ public class MainDriver {
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
+		
 		System.out.println("Welcome to Automated Auction System");
 		
   

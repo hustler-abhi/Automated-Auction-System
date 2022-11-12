@@ -54,7 +54,9 @@ public class SellerDaoimpl implements SellerDao{
 			ResultSet rs  =ps.executeQuery();
 			
 			if(rs.next()) {
-				message=rs.getString("seller_name")+"  log in Succesfully ";
+				message="  Welcome "+rs.getString("seller_name")+" !";
+				System.out.println(message);
+				message="Welcome";
 			}else {
 				throw new SellerException(message);
 			}

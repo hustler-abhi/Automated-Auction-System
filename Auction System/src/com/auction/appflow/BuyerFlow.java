@@ -54,6 +54,7 @@ public static void BuyerLoginSignup() {
 	public  static void BuyerFunctions() {
 		while(true) {
 			Scanner sc  = new Scanner(System.in);
+			System.out.println("This is Buyer_Interface !");
 			System.out.println("1. Get Product Details By Category");
 			System.out.println("2. Select Item To Buy");
 			System.out.println("3. Go To Home Page");

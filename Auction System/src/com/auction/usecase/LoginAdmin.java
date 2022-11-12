@@ -30,7 +30,7 @@ public class LoginAdmin {
 	  try {
 		  
 		String msg=dao.loginAdmin(email, pass);
-		System.out.println(msg);
+	 
 		if(msg.equalsIgnoreCase("Welcome")) {
 			return true;
 		}else {

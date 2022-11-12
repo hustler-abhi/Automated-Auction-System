@@ -40,6 +40,8 @@ public class AdminFlow {
 				
 				break;
 			} else if(x==3) {
+				
+				SellerFlow.SellerLoginSignup();
 				break;
 			} else if(x==4) {
 				System.out.println("Thank you ! for choosing our services ");
@@ -88,6 +90,7 @@ public class AdminFlow {
 		Scanner sc = new Scanner(System.in);
 		
 		while(true) {
+			System.out.println("This is Admin Interface...");
 			System.out.println("Enter your Choice : ");
 			System.out.println("1. View Buyer List");
 			System.out.println("2. View Seller List ");
