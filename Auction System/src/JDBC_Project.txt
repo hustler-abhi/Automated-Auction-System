@@ -1,0 +1,105 @@
+Number of tables->{
+1.Admin
+2.Buyer
+3.Seller
+4.Product
+5.SOld_Product
+}
+
+1.Admin{
+
+id,name,email,password
+}
+2.Buyer{
+
+id,name,email,password
+}
+3.seller{
+
+id,name,email,password
+}
+Product{
+id,name,category,price,quantity
+}
+
+interface admin{
+
+public String insertintoAdmin(Admin a);
+
+public String loginAdmin(String email,String pass);
+
+public List<Buyer> getbuyerlist( );
+
+public List<Seller> getsellerlist( );
+
+
+}
+
+interface Seller{
+
+public String  signupSeller(Seller s);
+public String loginSeller(String email,String pass);
+public String updateItem(int productid,int price,int buyerid,int quantity);
+public String insertintoProduct(Product p);
+public String removefromProduct(int productid);
+public List<sold>  getsoldProductdetails( );
+}
+
+interface Buyer{
+
+public String insertintoBuyer(Buyer b);
+public String loginBuyer(String email,String pass);
+public List<product>  getProductdetailsbyCtegory(String category);
+public product selectItemtoBuy(String productName);
+public list<BuyerWithCategory> getdetailsOfBuyerWithCategory;
+
+}
+create table Admin(
+AID int primary key auto_increment,
+Admin_Name varchar(16) not null,
+email varchar(18) not null,
+password varchar(12),
+status varchar(12) default 'offline'
+);
+create table Registered_Buyer (
+BID int primary key auto_increment,
+Buyer_Name varchar(16) not null,
+email varchar(18) not null,
+password varchar(12),
+status varchar(12) default 'offline'
+);
+create table Registered_Seller(
+SID int primary key auto_increment,
+Seller_Name varchar(16) not null,
+email varchar(18) not null,
+password varchar(12),
+status varchar(12) default 'offline'
+);
+
+create table ITEM(
+item_id int primary key,
+item_name varchar(12) not null,
+price int,
+quantity int,
+category varchar(12) not null,
+seller_id int,
+foreign key(seller_id) references Registered_Seller(SID)
+
+);
+ 
+
+create table sold(
+item_id int not null,
+item_name varchar(12) not null,
+Traded_price int not null,
+buyer_id int,
+seller_id int,
+
+foreign key(buyer_id) references Registered_buyer(BID),
+foreign key(seller_id) references Registered_Seller(SID)
+
+);
+ 
+ 
+
+
